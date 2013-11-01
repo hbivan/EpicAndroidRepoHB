@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AUScience</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="no_items">No items to display!</string>
+    
+    <string-array name="android_names">
+        <item>Android Beta</item>
+        <item>Android 1.0</item>
+        <item>Android 1.1</item>
+        <item>Android Something</item>
+        <item>Icecream Sandwich</item>
+        <item>Gingerbread</item>
+        <item>Froyo</item>
+        <item>Android Something</item>
+        <item>Android Beta</item>
+        <item>Android 1.0</item>
+        <item>Android 1.1</item>
+        <item>Android Something</item>
+    </string-array>
+
+</resources>
