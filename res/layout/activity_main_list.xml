@@ -24,6 +24,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:text="@string/no_items" />
-        
 
 </RelativeLayout>
