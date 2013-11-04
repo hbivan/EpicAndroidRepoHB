@@ -34,12 +34,14 @@ public final class R {
     }
     public static final class menu {
         public static final int main_list=0x7f080000;
+        public static final int second=0x7f080001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
         public static final int no_items=0x7f050003;
+        public static final int title_activity_second=0x7f050004;
     }
     public static final class style {
         /** 
