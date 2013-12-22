@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+<<<<<<< HEAD
         android:layout_alignParentTop="true" />
 
     <ProgressBar
@@ -30,5 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+=======
+        android:layout_alignParentTop="true"
+        android:text="@string/no_items" />
+>>>>>>> d9f5f5eb1d70935f8de029271bc741f8740055de
 
 </RelativeLayout>

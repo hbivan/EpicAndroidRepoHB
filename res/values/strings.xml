@@ -22,7 +22,10 @@
     </string-array>
 
     <string name="title_activity_second">SecondActivity</string>
+<<<<<<< HEAD
     <string name="error_title">Ooops! Sorry!</string>
     <string name="error_message">There was an error getting data from the blog</string>
+=======
+>>>>>>> d9f5f5eb1d70935f8de029271bc741f8740055de
 
 </resources>
