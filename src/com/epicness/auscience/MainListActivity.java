@@ -17,14 +17,18 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -33,17 +37,23 @@ import android.widget.Toast;
 public class MainListActivity extends ListActivity {
 	
 	protected String[] mBlogPostTitles;
-	public static final int NUMBER_OF_POSTS = 20;
+	public static final int NUMBER_OF_POSTS = 15;
 	public static final String TAG = MainListActivity.class.getSimpleName();
 	protected JSONObject mBlogData;
 	protected ProgressBar mProgressBar;
 	
 	private final String KEY_TITLE = "title";
 	private final String  KEY_AUTHOR = "author";
-	
+	private final String BLOGGER = "http://blog.teamtreehouse.com/api/get_recent_summary/?count=";//http://blog.teamtreehouse.com/api/get_recent_summary/?count=
+	/**
+	 * http://ausm.org.uk/" +
+			"u56NR5iwMrDb9vXXUK1cUPCTPSC0X4jEld1K8snfbmjYtBZgUUzHJ9NpP2YmdOL/" +
+			"get_recent_summary/?count=
+	 */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "index BLQQQ");
         setContentView(R.layout.activity_main_list);
         
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -73,13 +83,56 @@ public class MainListActivity extends ListActivity {
 		return isAvailable;
 	}
 
-
+    // Don't use it for now
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_list, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+//	        case R.id.action_search:
+//	            openSearch();
+//	            return true;
+	        case R.id.action_about:
+	            openAbout();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	private void openAbout() {
+		Intent about = new Intent(this, DisplayAboutActivity.class);
+		startActivity(about);
+		
+	}
+
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		JSONArray jsonPosts;
+		try {
+			jsonPosts = mBlogData.getJSONArray("posts");
+			JSONObject jsonPost = jsonPosts.getJSONObject(position);
+			String blogUrl = jsonPost.getString("url");
+			Intent intent = new Intent(this, BlogWebViewActivity.class);
+			intent.setData(Uri.parse(blogUrl));
+			startActivity(intent);
+		} catch (JSONException e) {
+			logException(e);
+		}
+	}
+
+
+	private void logException(Exception e) {
+		Log.e(TAG, "Exception caught!", e);
+	}
 
 	public void handleBlogResponse() {
 		mProgressBar.setVisibility(View.INVISIBLE);
@@ -103,16 +156,18 @@ public class MainListActivity extends ListActivity {
 					blogPost.put(KEY_TITLE, title);
 					blogPost.put(KEY_AUTHOR, author);
 					
+					System.err.println("Author is: " + author);
+					
 					blogPosts.add(blogPost);
 				}
 				
 				String[] keys = { KEY_TITLE, KEY_AUTHOR };
 				int[] ids = { android.R.id.text1, android.R.id.text2 };
 				SimpleAdapter adapter = new SimpleAdapter(this, blogPosts, 
-						android.R.layout.simple_expandable_list_item_2, keys, ids);
+						android.R.layout.simple_list_item_2, keys, ids);
 				setListAdapter(adapter);
 			} catch (JSONException e) {
-				Log.e(TAG, "Exception caught!", e);
+				logException(e);
 			}
 		}
 	}
@@ -138,7 +193,7 @@ public class MainListActivity extends ListActivity {
 			JSONObject jsonResponse = null;
 			
 			try{
-	        	URL blogFeedUrl = new URL("http://blog.teamtreehouse.com/api/get_recent_summary/?count=" + NUMBER_OF_POSTS); //http://ausm.org.uk/u56NR5iwMrDb9vXXUK1cUPCTPSC0X4jEld1K8snfbmjYtBZgUUzHJ9NpP2YmdOL/get_recent_posts/?count=
+	        	URL blogFeedUrl = new URL( BLOGGER + NUMBER_OF_POSTS); 
 	        	HttpURLConnection connection = (HttpURLConnection) blogFeedUrl.openConnection();
 	        	connection.connect();
 	        	responseCode = connection.getResponseCode();
@@ -162,13 +217,13 @@ public class MainListActivity extends ListActivity {
 	        	Log.i(TAG, "Code: " + responseCode);
 	        }
 	        catch (MalformedURLException e){
-	        	Log.e(TAG, "Exception caught: ", e);
+	        	logException(e);
 	        }
 	        catch (IOException e){
-	        	Log.e(TAG, "Exception caught: ", e);
+	        	logException(e);
 	        }
 	        catch (Exception e){
-	        	Log.e(TAG, "Exception caught: ", e);
+	        	logException(e);
 	        }
 			
 			return jsonResponse;
