@@ -22,10 +22,12 @@
     </string-array>
 
     <string name="title_activity_second">SecondActivity</string>
-<<<<<<< HEAD
     <string name="error_title">Ooops! Sorry!</string>
     <string name="error_message">There was an error getting data from the blog</string>
-=======
->>>>>>> d9f5f5eb1d70935f8de029271bc741f8740055de
+    <string name="title_activity_blog_web_view">Blog Post</string>
+    <string name="action_share">Share</string>
+    <string name="share_chooser_title">How do you want to share?</string>
+    <string name="title_activity_display_about">DisplayAboutActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

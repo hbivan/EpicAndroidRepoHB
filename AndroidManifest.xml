@@ -26,9 +26,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.epicness.auscience.SecondActivity"
-            android:label="@string/title_activity_second" >
+            android:name=".BlogWebViewActivity"
+            android:label="@string/title_activity_blog_web_view" 
+            android:parentActivityName="com.epicness.auscience.MainListActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicness.auscience.MainListActivity" />
+        </activity>
+        <activity android:name=".DisplayAboutActivity"
+            android:label="@string/title_activity_display_about"
+            android:parentActivityName="com.epicness.auscience.MainListActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicness.auscience.MainListActivity" />
         </activity>
     </application>
+
 
 </manifest>
