@@ -95,9 +95,9 @@ public class MainListActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-//	        case R.id.action_search:
-//	            openSearch();
-//	            return true;
+	        case R.id.action_tweet:
+	            openTweet();
+	            return true;
 	        case R.id.action_about:
 	            openAbout();
 	            return true;
@@ -106,6 +106,14 @@ public class MainListActivity extends ListActivity {
 	    }
 	}
 	
+
+	private void openTweet() {
+		Intent tweet = new Intent(this, DisplayTweetActivity.class);
+		startActivity(tweet);
+		
+	}
+
+
 	private void openAbout() {
 		Intent about = new Intent(this, DisplayAboutActivity.class);
 		startActivity(about);
@@ -156,7 +164,7 @@ public class MainListActivity extends ListActivity {
 					blogPost.put(KEY_TITLE, title);
 					blogPost.put(KEY_AUTHOR, author);
 					
-					System.err.println("Author is: " + author);
+					//System.err.println("Author is: " + author);
 					
 					blogPosts.add(blogPost);
 				}

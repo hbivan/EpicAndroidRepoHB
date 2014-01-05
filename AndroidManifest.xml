@@ -26,19 +26,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BlogWebViewActivity"
-            android:label="@string/title_activity_blog_web_view" 
-            android:parentActivityName="com.epicness.auscience.MainListActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:name="com.epicness.auscience.BlogWebViewActivity"
+            android:label="@string/title_activity_blog_web_view"
+            android:parentActivityName="com.epicness.auscience.MainListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.epicness.auscience.MainListActivity" />
         </activity>
-        <activity android:name=".DisplayAboutActivity"
+        <activity
+            android:name="com.epicness.auscience.DisplayAboutActivity"
             android:label="@string/title_activity_display_about"
-            android:parentActivityName="com.epicness.auscience.MainListActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:parentActivityName="com.epicness.auscience.MainListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.epicness.auscience.MainListActivity" />
+        </activity>
+        <activity
+            android:name="com.epicness.auscience.DisplayTweetActivity"
+            android:label="@string/title_activity_display_tweet"
+            android:parentActivityName="com.epicness.auscience.MainListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicness.auscience.MainListActivity" /> 
+        	<intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="oauth" android:host="com.epicness.auscience"  />
+            </intent-filter>
         </activity>
     </application>
-
 
 </manifest>
