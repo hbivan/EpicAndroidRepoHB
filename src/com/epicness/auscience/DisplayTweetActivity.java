@@ -33,9 +33,12 @@ public class DisplayTweetActivity extends Activity {
 	Button buttonLogin;
 	public static final String TAG = DisplayTweetActivity.class.getSimpleName();
 	
-	static String TWITTER_CONSUMER_KEY = "NaIg7s3MxZYezD1NGPnbsg"; // place your cosumer key here
+	static String TWITTER_CONSUMER_KEY = "NaIg7s3MxZYezD1NGPnbsg"; // place your consumer key here
     static String TWITTER_CONSUMER_SECRET = "dGUeClx8sNowEHxnbyJmQfUdM1PVLChSyFdN28Qow0"; // place your consumer secret here
-
+    static String TWITTER_ACCESS_TOKEN = "199411371-JYhdbyXxLYwhpzb3FMQFQP7WhMEIPHHQzmjQr3X6";
+    static String TWITTER_ACCESS_TOKEN_SECRET = "lidbjotJoogzE1i0PYJYXurWftseWBYSvbFkLcZSMput8";
+    
+    
     // Preference Constants
     static String PREFERENCE_NAME = "twitter_oauth";
     static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
@@ -187,25 +190,31 @@ public class DisplayTweetActivity extends Activity {
                 // oAuth verifier
                 final String verifier = uri
                         .getQueryParameter(URL_TWITTER_OAUTH_VERIFIER);
-
+                Log.e(TAG, "I have logged in returning query params " + verifier);
                 try {
+                	//Runnable r = 
 
                     Thread thread = new Thread(new Runnable(){
-                        @Override
+                		@Override
                         public void run() {
-                            try {
-
-                                // Get the access token
-                                DisplayTweetActivity.this.accessToken = twitter.getOAuthAccessToken(
-                                        requestToken, verifier);
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    thread.start();
-
+//	                        	Log.e(TAG, "Waited 3sec and about to get access token");
+	                            // Get the access token
+	                            try {
+	                            	Log.e(TAG,"Displaying tweet activity: requestToken " + requestToken + " verifier " + verifier);
+									DisplayTweetActivity.this.accessToken = twitter.getOAuthAccessToken(
+									        requestToken, verifier);
+	                            	//accessToken = twitter.getOAuthAccessToken(requestToken);
+									Log.e(TAG,"After");
+								} catch (TwitterException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+                		}
+                	});
+                   thread.start();
+                   synchronized(this){
+                	   wait(8000);
+                   }
                     // Shared Preferences
                     Editor e = mSharedPreferences.edit();
 
@@ -218,7 +227,7 @@ public class DisplayTweetActivity extends Activity {
                     e.putBoolean(PREF_KEY_TWITTER_LOGIN, true);
                     e.commit(); // save changes
 
-                    Log.e("Twitter OAuth Token", "> " + accessToken.getToken());
+                  //  Log.e("Twitter OAuth Token", "> " + accessToken.getToken());
 
                     // Hide login button
                     btnLoginTwitter.setVisibility(View.GONE);
@@ -251,19 +260,21 @@ public class DisplayTweetActivity extends Activity {
      * */
     private void loginToTwitter() {
         // Check if already logged in
-    	Log.e(TAG, "LOGIN TO TWITTER?");
         if (!isTwitterLoggedInAlready()) {
-        	Log.e(TAG, "Obviously passed the check");
+        	//Log.e(TAG, "Obviously passed the check");
             ConfigurationBuilder builder = new ConfigurationBuilder();
             builder.setOAuthConsumerKey(TWITTER_CONSUMER_KEY);
             builder.setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET);
             Log.e(TAG, "ConsumerKey " + TWITTER_CONSUMER_KEY);
             Log.e(TAG, "ConsumerSecret " + TWITTER_CONSUMER_SECRET);
+//            builder.setOAuthAccessToken(TWITTER_ACCESS_TOKEN);
+//            builder.setOAuthAccessTokenSecret(TWITTER_ACCESS_TOKEN_SECRET);
             Configuration configuration = builder.build();
-            Log.e(TAG, "Configuration done!");
+            //Log.e(TAG,"AccessToken is : " + configuration);
+            //Log.e(TAG, "Configuration done!");
             TwitterFactory factory = new TwitterFactory(configuration);
             twitter = factory.getInstance();
-            Log.e(TAG, "Twitter Factory and shit "+twitter);
+            //Log.e(TAG, "Twitter Factory and shit "+twitter);
 
                 Thread thread = new Thread(new Runnable(){
                     @Override
