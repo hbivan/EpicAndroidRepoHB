@@ -294,6 +294,14 @@ public class DisplayTweetActivity extends Activity {
                 });
                 thread.start();         
         } else {
+        	 // Hide login button
+            btnLoginTwitter.setVisibility(View.GONE);
+
+            // Show Update Twitter
+            lblUpdate.setVisibility(View.VISIBLE);
+            txtUpdate.setVisibility(View.VISIBLE);
+            btnUpdateStatus.setVisibility(View.VISIBLE);
+            btnLogoutTwitter.setVisibility(View.VISIBLE);
             // user already logged into twitter
             Toast.makeText(getApplicationContext(),
                     "Already Logged into twitter", Toast.LENGTH_LONG).show();
