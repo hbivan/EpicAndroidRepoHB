@@ -19,11 +19,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextStatus" android:layout_margin="10dp"/>
+
     <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Tweet"
-            android:id="@+id/buttonUpdateStatus" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
+        android:id="@+id/buttonUpdateStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Tweet" />
+
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

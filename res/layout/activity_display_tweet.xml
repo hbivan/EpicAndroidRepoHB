@@ -10,14 +10,19 @@
 
     
     
-    <!-- Twitter Login Button -->
-    <Button android:id="@+id/btnLoginTwitter"
+    <!-- Twitter Login Button-->
+     <Button android:id="@+id/btnLoginTwitter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Login with Twitter"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="30dip"/>
+        
+        
+        
+         
+   
     
     <!-- user name label -->
     <TextView android:id="@+id/lblUserName"
@@ -33,32 +38,37 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:visibility="gone"/>
+       android:visibility="gone" />
     
     <!-- Tweet EditText -->
     <EditText android:id="@+id/txtUpdateStatus"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:visibility="gone"/>
+       android:visibility="gone" />
     
     <!-- Tweet Button -->
-    <Button android:id="@+id/btnUpdateStatus"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Tweet"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:visibility="gone"/>
     
     <!-- Twitter Logout button -->
-    <Button android:id="@+id/btnLogoutTwitter"
+
+    <Button
+        android:id="@+id/btnLogoutTwitter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Logout from Twitter"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="50dip"
-        android:visibility="gone"/>
+        android:layout_alignLeft="@+id/btnUpdateStatus"
+        android:layout_below="@+id/lblUserName"
+        android:layout_marginTop="87dp"
+        android:text="Logout from Twitter" 
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnUpdateStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="Tweet" 
+        android:visibility="gone" />
 
 </RelativeLayout>

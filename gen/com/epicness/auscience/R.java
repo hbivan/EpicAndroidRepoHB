@@ -67,8 +67,8 @@ public final class R {
         public static final int action_share=0x7f09000e;
         public static final int action_tweet=0x7f090010;
         public static final int btnLoginTwitter=0x7f090002;
-        public static final int btnLogoutTwitter=0x7f090007;
-        public static final int btnUpdateStatus=0x7f090006;
+        public static final int btnLogoutTwitter=0x7f090006;
+        public static final int btnUpdateStatus=0x7f090007;
         public static final int buttonLogout=0x7f09000d;
         public static final int buttonUpdateStatus=0x7f09000c;
         public static final int editTextStatus=0x7f09000b;
