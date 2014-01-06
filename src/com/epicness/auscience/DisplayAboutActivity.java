@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-public class DisplayAboutActivity extends Activity {
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+
+public class DisplayAboutActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
